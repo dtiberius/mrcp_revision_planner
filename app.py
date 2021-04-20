@@ -31,9 +31,11 @@ def date_calc():
         exam_date_formatted = date(2021,11,23)
     days_until_exam = (exam_date_formatted - date.today()).days
     weeks_until_exam = round(days_until_exam/7)
-    st.markdown(f'There are {days_until_exam} days until your exam (roughly {weeks_until_exam} weeks). How much revision do you have time for between now and then? Be ambitious but realistic.')
+    return days_until_exam, weeks_until_exam
+    
+days_until_exam, weeks_until_exam = date_calc()
 
-date_calc()
+st.markdown(f'There are {days_until_exam} days until your exam (roughly {weeks_until_exam} weeks). How much revision do you have time for between now and then? Be ambitious but realistic.')
 
 # create sidebar
 col1 = st.sidebar
