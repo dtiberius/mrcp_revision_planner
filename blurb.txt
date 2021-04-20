@@ -1,9 +1,14 @@
-Welcome to our Revision Planner - a calculator that let's you weight your revision time by the specialty split in the exam (i.e. there are 14 questions on neurology but only 5 on oncology) and your confidence in each specialism. Simply enter the time you have available below (you can switch the exam you're sitting to get an idea of how long you've got) and you'll get your breakdown. You can adjust your confidence in each specialism using the sidebar at the left (if it's not there then try tapping the little arrow at the top left.
+Welcome to the [Key Medicine](https://keymedicine.co.uk) Revision Planner - a calculator that let's you weight your revision time by the specialty split in the MRCP Part 1 exam (i.e. there are 14 questions on neurology but only 5 on oncology) in addition to your confidence in each specialism.
 
-If you've got plenty of revision time, you may see some time allocated to familiarising yourself with the official syllabus. That refers to this document, where you can see what's covered in the exam (and what you can ignore!). Depending on your input, we may have also allocated times for non-specialty revision - here you might like to read up on presentations discussed in the syllabus or answer question bank questions randomly, where the specialism is unknown.
+To calculate your revision breakdown, simply...
+1. enter the time you have available below (you can switch the exam you're sitting to get an idea of how long you've got)
+2. adjust your confidence in each specialism using the sidebar at the left (if it's not there then try tapping the little arrow at the top left)
+3. review your results!
+
+If you've got plenty of revision time, you may see some time allocated to familiarising yourself with the official syllabus. That refers to [this document](https://www.jrcptb.org.uk/sites/default/files/FINAL%202009%20CMT%20Curriculum%20%28AMENDMENTS%20Aug%202013%29_0.pdf) (starts on page 7), where you can see what's covered in the exam (and what you can ignore!). Depending on your inputs, we may have also allocated times for non-specialty revision - here you might like to read up on presentations discussed in the syllabus or answer question bank questions randomly, where the specialism is unknown.
 
 In relation to question banks, we don't recommend any one in particular, but think that they're a valuable part of your revision, if supplemented with further reading and note-taking.
 
-Once you've got your plan, book the time into your calendar to lock in those hours before any surprises start stealing your time!
+Once you've got your hours alloation, book the time into your calendar to lock in those hours before any surprises start claiming them!
 
-If you have any questions or suggestions about this app then email us at enquiries@keymedicine.co.uk.
+If you have any questions or suggestions about our Revision Planner then email us at [enquiries@keymedicine.co.uk](mailto:enquiries@keymedicine.co.uk).

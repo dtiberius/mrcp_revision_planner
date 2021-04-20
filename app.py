@@ -6,24 +6,34 @@ st.set_page_config(page_title="Sales Entry", layout="wide")
 st.title("The Key Medicine MRCP Part 1 Revision Planner")
 
 expander = st.beta_expander('About')
-# get text
-f = open("blurb.txt", "r")
-text = f.read()
-f.close()
+# get blurb
+@st.cache(suppress_st_warning=True)
+def get_blurb():
+    f = open("blurb.txt", "r")
+    blurb = f.read()
+    f.close()
+    return blurb
 
-expander.markdown(text)
+blurb = get_blurb()
+
+expander.markdown(blurb)
+
+st.markdown('')
 
 # enter exam date
 exam_date = st.selectbox('Which exam are you planning to sit?', ['24 Aug 2021', '23 Nov 2021'])
 
-if exam_date == '24 Aug 2021':
-    exam_date_formatted = date(2021,8,24)
-else:
-    exam_date_formatted = date(2021,11,23)
-days_until_exam = (exam_date_formatted - date.today()).days
-weeks_until_exam = round(days_until_exam/7)
+@st.cache(suppress_st_warning=True)
+def date_calc():
+    if exam_date == '24 Aug 2021':
+        exam_date_formatted = date(2021,8,24)
+    else:
+        exam_date_formatted = date(2021,11,23)
+    days_until_exam = (exam_date_formatted - date.today()).days
+    weeks_until_exam = round(days_until_exam/7)
+    st.markdown(f'There are {days_until_exam} days until your exam (roughly {weeks_until_exam} weeks). How much revision do you have time for between now and then? Be ambitious but realistic.')
 
-st.markdown(f'There are {days_until_exam} days until your exam (roughly {weeks_until_exam} weeks). How much revision do you have time for between now and then? Be ambitious but realistic.')
+date_calc()
 
 # create sidebar
 col1 = st.sidebar
@@ -31,7 +41,7 @@ col1 = st.sidebar
 knowledge_categories = ['significant gaps', 'okay', 'good', 'comprehensive']
 
 # weight the knowledge categories
-over_40_knowledge_weights = {
+over_30_knowledge_weights = {
     knowledge_categories[0]:2.5,
     knowledge_categories[1]:1.75,
     knowledge_categories[2]:1,
@@ -55,6 +65,8 @@ specialties = ['Cardiology','Clinical Pharmacology and Therapeutics','Dermatolog
     'Medical ophthalmology','Palliative medicine and end of life care','Psychiatry','Renal medicine','Respiratory medicine',
     'Rheumatology', 'Cell, molecular and membrane biology','Clinical anatomy','Clinical biochemistry and metabolism',
     'Clinical physiology','Genetics','Immunology','Statistics, epidemiology and evidence-based medicine']
+
+initial_weights = [14,15,8,14,14,8,10,14,14,5,4,4,9,14,14,14,2,3,4,4,3,4,5]
 
 # add hours input (currently on main section)
 hours_input = st.number_input("Hours available for revision:", min_value=10, value=40, max_value=400,step=1)
@@ -99,11 +111,10 @@ s22 = col1.select_slider(specialties[21], knowledge_categories, 'okay')
 s23 = col1.select_slider(specialties[22], knowledge_categories, 'okay')
 
 knowledge_inputs = [s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23]
-initial_weights = [14,15,8,14,14,8,10,14,14,5,4,4,9,14,14,14,2,3,4,4,3,4,5]
 
 # create knowledge coefficients from knowledge inputs
-if hours_input > 40:
-    knowledge_coefficients = [over_40_knowledge_weights[knowledge_input] for knowledge_input in knowledge_inputs]
+if hours_input > 30:
+    knowledge_coefficients = [over_30_knowledge_weights[knowledge_input] for knowledge_input in knowledge_inputs]
 elif hours_input > 20:
     knowledge_coefficients = [over_20_knowledge_weights[knowledge_input] for knowledge_input in knowledge_inputs]
 else:
@@ -151,9 +162,12 @@ non_specialty_print = hours_input - np.sum(hours_per_specialty) - syllabus
 # write non-specialty time if present
 if syllabus == 1.5:
     st.write(f'{syllabus} hours familiarising yourself with the official syllabus')
-    st.write(f'{non_specialty_print} hours non-specialism revision (random MCQs and presentation-focused content)')
 
 # write specialty time
 for i in range(23):
     if hours_per_specialty[i] > 0:
         st.write(f'{hours_per_specialty[i]} hours revising {specialties[i]}')
+
+# write non-specialty time if present
+if syllabus == 1.5:
+    st.write(f'{non_specialty_print} hours non-specialism revision (random MCQs and presentation-focused content)')
