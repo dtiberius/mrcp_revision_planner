@@ -22,8 +22,11 @@ expander.markdown(blurb)
 
 st.markdown('')
 
+# create columns
+col1, col2 = st.beta_columns((1,1))
+
 # enter exam date
-exam_date = st.selectbox('Which exam are you planning to sit?', ['24 Aug 2021', '23 Nov 2021'])
+exam_date = col2.selectbox('Which exam are you planning to sit?', ['24 Aug 2021', '23 Nov 2021'])
 
 @st.cache(suppress_st_warning=True)
 def date_calc():
@@ -37,10 +40,7 @@ def date_calc():
     
 days_until_exam, weeks_until_exam = date_calc()
 
-st.markdown(f'There are {days_until_exam} days until your exam (roughly {weeks_until_exam} weeks). How much revision do you have time for between now and then? Be ambitious but realistic.')
-
-# create sidebar
-col1 = st.sidebar
+col2.markdown(f'There are {days_until_exam} days until your exam (roughly {weeks_until_exam} weeks). How much revision do you have time for between now and then? Be ambitious but realistic.')
 
 knowledge_categories = ['significant gaps', 'okay', 'good', 'comprehensive']
 
@@ -73,7 +73,7 @@ specialties = ['Cardiology','Clinical Pharmacology and Therapeutics','Dermatolog
 initial_weights = [14,15,8,14,14,8,10,14,14,5,4,4,9,14,14,14,2,3,4,4,3,4,5]
 
 # add hours input (currently on main section)
-hours_input = st.number_input("Hours available for revision:", min_value=10, value=40, max_value=400,step=1)
+hours_input = col2.number_input("Hours available for revision:", min_value=10, value=40, max_value=400,step=1)
 
 # add syllabus revision for high hours
 if hours_input > 25:
@@ -165,13 +165,13 @@ non_specialty_print = hours_input - np.sum(hours_per_specialty) - syllabus
 
 # write non-specialty time (if present)
 if syllabus == 1.5:
-    st.write(f'{syllabus} hours familiarising yourself with the official syllabus')
+    col2.write(f'{syllabus} hours familiarising yourself with the official syllabus')
 
 # write specialty time
 for i in range(23):
     if hours_per_specialty[i] > 0:
-        st.write(f'{hours_per_specialty[i]} hours revising {specialties[i]}')
+        col2.write(f'{hours_per_specialty[i]} hours revising {specialties[i]}')
 
 # write non-specialty time (if present)
 if syllabus == 1.5:
-    st.write(f'{non_specialty_print} hours non-specialism revision (random MCQs and presentation-focused content)')
+    col2.write(f'{non_specialty_print} hours non-specialism revision (random MCQs and presentation-focused content)')
