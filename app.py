@@ -6,21 +6,19 @@ import os
 st.set_page_config(page_title="Sales Entry", layout="wide")
 st.title("The Key Medicine MRCP Part 1 Revision Planner")
 
-cwd = os.getcwd()
-st.write(cwd)
+expander = st.beta_expander('About')
 
-#expander = st.beta_expander('About')
 # get blurb
-#@st.cache(suppress_st_warning=True)
-#def get_blurb():
-#    f = open('blurb.txt', "r")
-#    blurb = f.read()
-#    f.close()
-#    return blurb
+@st.cache(suppress_st_warning=True)
+def get_blurb():
+    f = open('blurb.txt', "r")
+    blurb = f.read()
+    f.close()
+    return blurb
 
-#blurb = get_blurb()
+blurb = get_blurb()
 
-#expander.markdown(blurb)
+expander.markdown(blurb)
 
 st.markdown('')
 
