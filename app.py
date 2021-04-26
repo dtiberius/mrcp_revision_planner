@@ -145,7 +145,7 @@ if remaining_hours > 0:
     # remove zero entries as these don't need extra time
     adders = [i[1] for i in dummy]
 
-    # add 30 minutes to bottom !three!
+    # add 30 minutes to bottom n buckets
     for i in adders:
         hours_per_specialty[i] = hours_per_specialty[i] + 0.5
 elif remaining_hours < 0:
@@ -154,14 +154,14 @@ elif remaining_hours < 0:
     dummy = sorted(zip(hours_per_specialty, indices), reverse=True)[:(-removals)]
     subtractors = [i[1] for i in dummy]
 
-    # subtract 30 minutes to bottom !three!
+    # subtract 30 minutes to bottom n buckets
     for i in subtractors:
         hours_per_specialty[i] = hours_per_specialty[i] - 0.5
 
 # calculate true non-specialism value
 non_specialty_print = hours_input - np.sum(hours_per_specialty) - syllabus
 
-# write non-specialty time if present
+# write non-specialty time (if present)
 if syllabus == 1.5:
     st.write(f'{syllabus} hours familiarising yourself with the official syllabus')
 
@@ -170,6 +170,6 @@ for i in range(23):
     if hours_per_specialty[i] > 0:
         st.write(f'{hours_per_specialty[i]} hours revising {specialties[i]}')
 
-# write non-specialty time if present
+# write non-specialty time (if present)
 if syllabus == 1.5:
     st.write(f'{non_specialty_print} hours non-specialism revision (random MCQs and presentation-focused content)')
