@@ -2,15 +2,6 @@ import numpy as np
 import streamlit as st
 from datetime import date
 
-hide_streamlit_style = """
-<style>
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-</style>
-
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
-
 st.set_page_config(page_title="Sales Entry", layout="wide")
 st.title("The Key Medicine MRCP Part 1 Revision Planner")
 
