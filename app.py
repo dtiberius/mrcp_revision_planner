@@ -2,7 +2,7 @@ import numpy as np
 import streamlit as st
 from datetime import date
 
-st.set_page_config(page_title="Sales Entry", layout="wide")
+st.set_page_config(page_title="Revision Planner", layout="wide")
 st.title("The Key Medicine MRCP Part 1 Revision Planner")
 
 expander = st.beta_expander('About')
